@@ -83,5 +83,15 @@ main section.products-show {
     img.main-img {
       max-width: 100%;
     }
+
   }
+}
+
+img.small-img {
+  width: 100%
+}
+
+.order-summary__header {
+  display: flex;
+  justify-content: space-between;
 }
