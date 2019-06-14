@@ -30,9 +30,9 @@ cat2 = Category.find_or_create_by! name: 'Electronics'
 cat3 = Category.find_or_create_by! name: 'Furniture'
 
 ## PRODUCTS
-
 puts "Re-creating Products ..."
 
+LineItem.destroy_all
 Product.destroy_all
 
 cat1.products.create!({
@@ -58,7 +58,6 @@ cat1.products.create!({
   quantity: 4,
   price: 34.49
 })
-
 cat1.products.create!({
   name:  'Hipster Socks',
   description: Faker::Hipster.paragraph(4),
@@ -130,6 +129,26 @@ cat3.products.create!({
   image: open_asset('furniture3.jpg'),
   quantity: 0,
   price: 2_483.75
+})
+
+# Users
+User.destroy_all
+
+user = User.create({
+  first_name: 'alice',
+  last_name: 'almonia',
+  email: 'aa@lmao.com'
+})
+
+prod1 = Product.find_by name: 'Hipster Hat'
+# Reviews
+Review.destroy_all
+
+prod1.reviews.create({
+  user_id: user.id,
+  rating: 1,
+  summary: 'bad',
+  content: Faker::Hipster.paragraph(4),
 })
 
 
