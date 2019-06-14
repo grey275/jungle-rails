@@ -1,8 +1,28 @@
 <section class="products-show">
 
   <header class="page-header">
-    <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
+      <h1><%= link_to @product.name, product_path %></h1>
   </header>
 
-  <%= render 'products/details', product: @product, image_class: 'main-img'%>
+  <%= render 'products/details_card', product: @product, image_class: 'main-img'%>
+  <% if current_user %>
+    <%= form_for :review, url: product_reviews_path(@product) do |f| %>
+      <h2>Leave a review!</h2>
+      <%= f.label :rating %>
+      <%= f.number_field :rating %>
+
+      <%= f.label :summary %>
+      <%= f.text_area :summary %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+      <%= f.submit 'Submit' %>
+
+    <% end %>
+  <% end %>
+
+  <h3>Reviews</h3>
+  <% @product.reviews.each do |r|%>
+    <%= render 'reviews/review', review: r %>
+  <% end %>
 </section>

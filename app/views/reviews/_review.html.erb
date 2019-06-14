@@ -1,0 +1,13 @@
+<article class="review">
+  <header>
+    <span>author: <%= review.user.full_name %>
+    <span>summary: <%= review.summary %> </span>
+    <span>rating: <%= review.rating %> </span>
+  </header>
+  <footer>
+    <p><%= review.content %></p>
+  </footer>
+  <% if current_user and current_user.id == review.user_id %>
+    <%= button_to 'Delete', product_review_path(review.product, review), method: 'delete'%>
+  <% end %>
+</article>

@@ -137,10 +137,13 @@ User.destroy_all
 user = User.create({
   first_name: 'alice',
   last_name: 'almonia',
+  password: 'lmao',
+  password_confirmation: 'lmao',
   email: 'aa@lmao.com'
 })
 
 prod1 = Product.find_by name: 'Hipster Hat'
+prod2 = Product.find_by name: 'Red Bookshelf'
 # Reviews
 Review.destroy_all
 
@@ -148,6 +151,14 @@ prod1.reviews.create({
   user_id: user.id,
   rating: 1,
   summary: 'bad',
+  content: Faker::Hipster.paragraph(4),
+})
+
+
+prod2.reviews.create({
+  user_id: user.id,
+  rating: 10,
+  summary: 'great',
   content: Faker::Hipster.paragraph(4),
 })
 
